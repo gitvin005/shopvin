@@ -1,9 +1,10 @@
-// import nodemailer from 'nodemailer';
+import { NextApiRequest, NextApiResponse } from 'next';
+import nodemailer from 'nodemailer';
 import { PrismaClient } from '@prisma/client'; // Ensure Prisma is set up for database operations
 
 const prisma = new PrismaClient();
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -33,7 +34,7 @@ export default async function handler(req, res) {
     });
 
     res.status(200).json({ message: 'Message sent successfully!' });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({ message: 'Failed to send message.', error: error.message });
   }
 }
