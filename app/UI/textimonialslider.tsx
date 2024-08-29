@@ -45,7 +45,7 @@ export default function TestimonialSlider(){
             alt={testimonials[currentIndex].name}
             className="w-20 h-20 mx-auto rounded-full mb-4"
           />
-          <p className="text-lg italic text-gray-600">"{testimonials[currentIndex].feedback}"</p>
+          <p className="text-lg italic text-gray-600">{testimonials[currentIndex].feedback}</p>
           <h3 className="mt-4 text-xl font-semibold text-gray-900">
             {testimonials[currentIndex].name}
           </h3>
