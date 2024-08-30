@@ -1,3 +1,5 @@
+"use client";
+
 import { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import { PrismaClient } from '@prisma/client'; // Ensure Prisma is set up for database operations
@@ -28,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: 'admin@example.com', // Replace with your admin email
+      to: 'vinavabacus@gmail.com', // Replace with your admin email
       subject: 'New Contact Form Submission',
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     });
