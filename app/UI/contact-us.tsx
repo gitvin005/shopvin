@@ -4,7 +4,6 @@ import { Button } from "./button";
 import { monsterrat } from "./fonts";
 import Link from "next/link";
 import { useState, ChangeEvent, FormEvent } from "react";
-import axios from 'axios';
 
 // Define types for form data
 interface FormData {
@@ -29,32 +28,34 @@ export default function ContactSect() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Define event type for form submission
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSuccessMessage('');
-    setErrorMessage('');
+  // Example of frontend fetch request
+const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSuccessMessage('');
+  setErrorMessage('');
 
-    try {
-      const response = await axios.post('/api/contact', formData);
-  
-      if (response.status === 200) {
-        setSuccessMessage('Your message has been sent successfully!');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        throw new Error('Failed to send your message.');
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        setErrorMessage(error.message || 'Something went wrong.');
-      } else {
-        setErrorMessage('Something went wrong.');
-      }
-    } finally {
-      setIsSubmitting(false);
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      setSuccessMessage('Your message has been sent successfully!');
+      setFormData({ name: '', email: '', message: '' });
+    } else {
+      throw new Error('Failed to send your message.');
     }
-  };
+  } catch (error: any) {
+    setErrorMessage(error.message || 'Something went wrong.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+  
 
   return (
     <section className={`${monsterrat.className} py-10`}>
@@ -115,13 +116,8 @@ export default function ContactSect() {
             <div className="mt-3">
               <h3 className="text-xl font-bold">Contact Details</h3>
               <div className="flex flex-col mt-2">
-                <Link legacyBehavior href="tel:1234567890">
-                  <a>+123 456 7890</a>
-                </Link>
-                <Link legacyBehavior href="mailto:contact@smileclinic.com">
-                  <a>contact@smileclinic.com</a>
-                </Link>
-                
+                <Link href="tel:1234567890">+123 456 7890</Link>
+                <Link href="mailto:contact@smileclinic.com">contact@smileclinic.com</Link>
               </div>
             </div>
           </div>
