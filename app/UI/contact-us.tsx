@@ -1,9 +1,10 @@
-"use client";
+'use client';
 
 import { Button } from "./button";
 import { monsterrat } from "./fonts";
 import Link from "next/link";
 import { useState, ChangeEvent, FormEvent } from "react";
+import axios from 'axios';
 
 // Define types for form data
 interface FormData {
@@ -36,20 +37,20 @@ export default function ContactSect() {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
+      const response = await axios.post('/api/contact', formData);
+  
+      if (response.status === 200) {
         setSuccessMessage('Your message has been sent successfully!');
         setFormData({ name: '', email: '', message: '' });
       } else {
         throw new Error('Failed to send your message.');
       }
-    } catch (error: any) {
-      setErrorMessage(error.message || 'Something went wrong.');
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setErrorMessage(error.message || 'Something went wrong.');
+      } else {
+        setErrorMessage('Something went wrong.');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -61,7 +62,7 @@ export default function ContactSect() {
       <div className="container mx-auto">
         <div className="flex gap-10 mt-10">
           <div className="flex-1">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} method="POST">
               {successMessage && <p className="text-green-500 text-center">{successMessage}</p>}
               {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
               <div className="flex flex-col mt-4">
@@ -114,8 +115,13 @@ export default function ContactSect() {
             <div className="mt-3">
               <h3 className="text-xl font-bold">Contact Details</h3>
               <div className="flex flex-col mt-2">
-                <Link href="tel:1234567890">+123 456 7890</Link>
-                <Link href="mailto:contact@smileclinic.com">contact@smileclinic.com</Link>
+                <Link legacyBehavior href="tel:1234567890">
+                  <a>+123 456 7890</a>
+                </Link>
+                <Link legacyBehavior href="mailto:contact@smileclinic.com">
+                  <a>contact@smileclinic.com</a>
+                </Link>
+                
               </div>
             </div>
           </div>

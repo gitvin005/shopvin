@@ -19,7 +19,7 @@ export default function Home() {
             <div className="w-full flex gap-2 flex-col  justify-center items-center bg-white rounded-2xl p-10">
               <h2 className="text-4xl font-bold">Welcome to SmileClinic</h2>
               <h4 className="text-base">Your Smile is our Priority</h4>
-              <Link href="/appointment">
+              <Link legacyBehavior href="/appointment">
                 <Button>Book Appointment</Button>
               </Link>
             </div>
