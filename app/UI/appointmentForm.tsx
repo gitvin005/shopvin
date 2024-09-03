@@ -29,7 +29,7 @@ export default function AppointmentForm(){
     const [successMessage, setSuccessMessage] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string>('');
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
       };
@@ -71,7 +71,7 @@ export default function AppointmentForm(){
                                     <label htmlFor="Service"> Select Service</label>
                                     <select name="service" id="Service"
                                     value={formData.service}
-                                    
+                                    onChange={handleChange}
                                      className="block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
                                      required>
                                         <option value="Cleaning">Cleaning</option>
@@ -85,7 +85,7 @@ export default function AppointmentForm(){
                                     <label htmlFor="Doctor"> Select Doctor</label>
                                     <select name="doctor" id="Doctor"
                                     value={formData.doctor}
-                                    
+                                    onChange={handleChange}
                                      className="block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
                                      required>
                                         <option value="dr smith">Dr. Smith</option>
