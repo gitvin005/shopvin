@@ -36,7 +36,7 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
   setErrorMessage('');
 
   try {
-    const response = await fetch('/api/contact', {
+    const response = await fetch('./api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
@@ -63,7 +63,7 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       <div className="container mx-auto">
         <div className="flex gap-10 mt-10">
           <div className="flex-1">
-            <form onSubmit={handleSubmit} method="POST">
+            <form onSubmit={handleSubmit}>
               {successMessage && <p className="text-green-500 text-center">{successMessage}</p>}
               {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
               <div className="flex flex-col mt-4">
