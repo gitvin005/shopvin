@@ -15,6 +15,7 @@ const config: Config = {
       },
       colors: {
         'primary-color': '#3B82F6',
+        'primary-bg': 'rgb(234 244 255)',
       },
     },
   },
