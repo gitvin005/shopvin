@@ -2,7 +2,7 @@ import DashHeader from "../UI/dashboard/sidenav";
 import { monsterrat } from "../UI/fonts";
 import Image from "next/image";
 
-export const experimental_ppr = true;
+
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
