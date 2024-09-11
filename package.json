@@ -14,7 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@nextui-org/button": "^2.0.37",
     "@nextui-org/react": "^2.4.6",
-    "@prisma/client": "^5.19.0",
+    "@prisma/client": "^5.19.1",
     "axios": "^1.7.7",
     "axois": "^0.0.1-security",
     "clsx": "^2.1.1",
@@ -22,6 +22,7 @@
     "next": "14.2.7",
     "nodemailer": "^6.9.14",
     "pg": "^8.12.0",
+    "prisma": "^5.19.1",
     "react": "^18",
     "react-big-calendar": "^1.13.4",
     "react-dom": "^18"

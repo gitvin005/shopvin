@@ -33,3 +33,4 @@ model Appointment{
 
   createdAt DateTime @default(now())
 }
+

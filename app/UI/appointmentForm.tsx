@@ -12,6 +12,7 @@ interface FormData{
     name: string;
     phone: string;
     email: string;
+    
 }
 
 
@@ -41,7 +42,7 @@ export default function AppointmentForm(){
         setErrorMessage('');
     
         try{
-            const response = await fetch ('./api/appointmentformdata', {
+            const response = await fetch ('/api/appointmentformdata', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(formData),
