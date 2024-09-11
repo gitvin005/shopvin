@@ -1,4 +1,3 @@
-// app/api/appointments/route.ts
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 

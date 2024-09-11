@@ -5,26 +5,25 @@ import { monsterrat } from "../UI/fonts";
 import { useState, ChangeEvent, FormEvent } from "react";
 
 interface FormData{
+    name: string;
+    email: string;
+    phone: string;
     service: string;
     doctor: string;
     date: string;
     time: string;
-    name: string;
-    phone: string;
-    email: string;
-    
 }
 
 
 export default function AppointmentForm(){
     const [formData, setFormData ] = useState<FormData>({
+        name: '',
+        email: '',
+        phone: '',
         service: '',
         doctor: '',
         date: '',
         time: '',
-        name: '',
-        phone: '',
-        email: '',
     });
     const [isSubmitting, setIsSubmitting] = useState<Boolean>(false);
     const [successMessage, setSuccessMessage] = useState<string>('');

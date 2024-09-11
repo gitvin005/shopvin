@@ -4,19 +4,19 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 interface AppointmentFormData{
+    name: string;
+    email: string;
+    phone: string;
     service: string;
     doctor: string;
     date: string;
     time: string;
-    name: string;
-    phone: string;
-    email: string;
 }
 
 export async function POST(req: NextRequest){
     try{
-        const {service, doctor, date, time, name, phone, email}: AppointmentFormData = await req.json();
-        if (!service || !doctor || !date || !time || !name || !phone || !email ) {
+        const {name, email, phone, service, doctor, date, time}: AppointmentFormData = await req.json();
+        if (!name || !email || !phone || !service || !doctor || !date || !time) {
             return NextResponse.json({message: 'All Fields Are Required'}, {status:400});
         }
 

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 type Appointment = {
     id: number;
     name: string;
-    phone_no: string;
+    phone: string;
     email: string;
     service: string;
     doctor: string;
@@ -65,20 +65,26 @@ export default function AppointmentsTable(){
                 {appointments.map(appointment => (
                 <tr key={appointment.id} className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">{appointment.name}</td>
-                    <td className="whitespace-nowrap py-3 pl-6 pr-3">{appointment.phone_no}</td>
+                    <td className="whitespace-nowrap py-3 pl-6 pr-3">{appointment.phone}</td>
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">{appointment.email}</td>
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">{appointment.service}</td>
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">{appointment.doctor}</td>
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">{appointment.status}</td>
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                        <div className="flex justify-justify-center items-center gap-4">
-                        {appointment.status === 'complete' ? (
-                        <Button variant="secondary" onClick={() => updateStatus(appointment.id, 'cancel')}>Cancel</Button>
-                        ) : (
-                        <Button onClick={() => updateStatus(appointment.id, 'complete')}>Complete</Button>
-                        )}
-                            
-                        </div>
+                    <div className="flex justify-center items-center gap-4">
+                                {appointment.status === 'pending' && (
+                                    <>
+                                        <Button onClick={() => updateStatus(appointment.id, 'complete')}>Complete</Button>
+                                        <Button variant="secondary" onClick={() => updateStatus(appointment.id, 'cancel')}>Cancel</Button>
+                                    </>
+                                )}
+                                {appointment.status === 'complete' && (
+                                    <Button variant="secondary" disabled>Complete</Button>
+                                )}
+                                {appointment.status === 'cancel' && (
+                                    <Button variant="secondary" disabled>Cancel</Button>
+                                )}
+                            </div>
                     </td>
                 </tr>
                 ))}
