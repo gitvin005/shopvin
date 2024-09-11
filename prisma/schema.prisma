@@ -30,7 +30,13 @@ model Appointment{
   doctor     String
   date     String
   time     String
+  status   Status     @default(pending)  // New field added here
 
   createdAt DateTime @default(now())
 }
 
+enum Status {
+  pending
+  complete
+  cancel
+}
